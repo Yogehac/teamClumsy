@@ -27,3 +27,4 @@ def main():
     with pdfium.PdfContext(pdffile) as pdf:
         image = pdfium.render_page_topil(pdf, 0)
         image.save('output.jpg')
+    
