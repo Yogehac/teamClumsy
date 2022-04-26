@@ -11,7 +11,7 @@ for i in range(len(images)):
 	images[i].save('page'+ str(i) +'.jpg', 'JPEG')
 
 	
-# new method
+# new method - currently using
 import pypdfium2 as pdfium
 
 pdffile = 'MailAttachments/QUOTATION 6680 [ KOTHARI SUGAR & CHEMICAL 19B ]511.pdf'
