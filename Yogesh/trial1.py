@@ -1,25 +1,28 @@
 import imaplib
 import email
 import json
-import tabula
+import pypdfium2 as pdfium
 
-# C:\Users\Yogesh\PycharmProjects\EmailTrial\Trail\Converted
+
+# pdf to Image conversion function
 def convertCsv(src, file):
-    # table_file = r"C:\Users\Yogesh\PycharmProjects\EmailTrial\Trail\MailAttachments\QUOTATION NO.330.pdf"
-    # output_csv = r"C:\Users\Yogesh\PycharmProjects\EmailTrial\Trail\MailAttachments\QUOTATION NO.330.csv"
-    if src[-3:] == 'pdf':
+    if file[-3:] == 'pdf':
         try:
-            dst = src[:49] + 'Converted\{}'.format(file)
-            dst = dst[:-3]
-            dst += 'csv'
-            tabula.convert_into(src, dst, output_format='csv', lattice=True, stream=False, pages="all")
-            print('file converted to csv')
+            dst = 'Converted/' + file[:-4] + '/'
+            print(dst)
+            for image, suffix in pdfium.render_pdf_topil(src):
+                dst = 'Converted/' + file[:-4] + '_%s.jpg' % suffix
+                with open(dst, 'w'):
+                    image.save(dst)
+                    print(dst)
+
         except Exception as e:
             print('error', e)
-    else :
+    else:
         print('not pdf format')
 
 
+# To get mail from the specified email
 def getMail():
     host = 'imap.gmail.com'
     username = 'teamclumsy.dev@gmail.com'
@@ -69,13 +72,6 @@ def getMail():
                     texts += data.decode()
                 elif part.get_content_type() == 'text/html':
                     continue
-        # else:
-        #     for part in msg.walk():
-        #         if part.get_content_type() == 'text/plain':
-        #             data = part.get_payload(decode=True)
-        #             texts += data.decode()
-        #         elif part.get_content_type() == 'text/html':
-        #             continue
         print()
         mailInfo['body'] = texts
         AllMails.append(mailInfo)
@@ -83,7 +79,7 @@ def getMail():
     return AllMails
 
 
-# C:\Users\Yogesh\PycharmProjects\EmailTrial\Trail\MailAttachments
+# To store the mail information from Py-dictionary to JSON
 def dbMail():
     try:
         with open('MailsInfo.json', 'w') as file:
@@ -93,25 +89,13 @@ def dbMail():
         print('Error', e)
 
 
+# To retrieve the JSON file to Py-dictionary
 def getDbMail():
     with open('MailsInfo.json', 'r') as file:
         db = json.load(file)
     return db
 
 
-
-
-
-
-
-# convertCsv(r"C:\Users\Yogesh\PycharmProjects\EmailTrial\Trail\MailAttachments\QUOTATION NO.330.pdf",
-#            'QUOTATION NO.330.csv')
-
-# for x in getDbMail():
-#     print(x)
-
-dbMail()
-
-# with open(r'C:\Users\Yogesh\PycharmProjects\EmailTrial\Trail\MailAttachments\hello.csv', 'w') as file:
-#     file.write('hello woeld1!')
-#     print('file created')
+# Driver code
+if __name__ == '__main__':
+    dbMail()
