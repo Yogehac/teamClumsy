@@ -18,3 +18,6 @@ for i in li[1:] :
 with open('req.json','w') as file:
     json.dump(reqD,file,indent=3)
     print('json created')
+
+    
+    
