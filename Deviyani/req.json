@@ -1,0 +1,318 @@
+{
+   "KKS": [
+      {
+         "Description": "\"Cane Carrier Chain 6\"\" Pitch\"",
+         "Drawing_No": "KSC-03-004A",
+         "Qty": "975",
+         "UOM": "Feet",
+         "Unit": "KKS"
+      },
+      {
+         "Description": "Cane Carrier Slats ",
+         "Drawing_No": "KSC-03-005A",
+         "Qty": "200",
+         "UOM": "Nos.",
+         "Unit": "KKS"
+      },
+      {
+         "Description": "Roller design Chain",
+         "Drawing_No": "KSC-05-022A",
+         "Qty": "175",
+         "UOM": "Feet",
+         "Unit": "KKS"
+      },
+      {
+         "Description": "Inter Carrier Slats ",
+         "Drawing_No": "KSC-06-073",
+         "Qty": "100",
+         "UOM": "Nos.",
+         "Unit": "KKS"
+      },
+      {
+         "Description": "\"Inter Carrier Chain 2.97\"\" pitch\"",
+         "Drawing_No": "KSC-06-074",
+         "Qty": "100",
+         "UOM": "Feet",
+         "Unit": "KKS"
+      },
+      {
+         "Description": "Rake Carrier Chain 150 mm pitch",
+         "Drawing_No": "KSC-06-081",
+         "Qty": "200",
+         "UOM": "Feet",
+         "Unit": "KKS"
+      }
+   ],
+   "KKC": [
+      {
+         "Description": "Inter Chain Link Part No.1",
+         "Drawing_No": "KSC-971C",
+         "Qty": "150",
+         "UOM": "Nos.",
+         "Unit": "KKC"
+      },
+      {
+         "Description": "Bush Part No.5",
+         "Drawing_No": "KSC-971C",
+         "Qty": "1500",
+         "UOM": "Nos.",
+         "Unit": "KKC"
+      },
+      {
+         "Description": "Roller for RBC Chain",
+         "Drawing_No": "KSC-971C",
+         "Qty": "150",
+         "UOM": "Nos.",
+         "Unit": "KKC"
+      },
+      {
+         "Description": "Outer Chain Link 10 mm Thk. Part No.2",
+         "Drawing_No": "KSC-971C",
+         "Qty": "720",
+         "UOM": "Nos.",
+         "Unit": "KKC"
+      },
+      {
+         "Description": "Outer Chain Link with attachment P.No.3A",
+         "Drawing_No": "KSC-971C",
+         "Qty": "360",
+         "UOM": "Nos.",
+         "Unit": "KKC"
+      },
+      {
+         "Description": "Outer Chain Link without attachment P.No.3B",
+         "Drawing_No": "KSC-971C",
+         "Qty": "360",
+         "UOM": "Nos.",
+         "Unit": "KKC"
+      },
+      {
+         "Description": "Bagasse Carrier Pin Part No.7",
+         "Drawing_No": "KSC-971C",
+         "Qty": "1400",
+         "UOM": "Nos.",
+         "Unit": "KKC"
+      },
+      {
+         "Description": "Attachment Pin PT.No.8",
+         "Drawing_No": "KSC-971C",
+         "Qty": "360",
+         "UOM": "Nos.",
+         "Unit": "KKC"
+      },
+      {
+         "Description": "Swivel attachment Part No.4",
+         "Drawing_No": "KSC-971C",
+         "Qty": "150",
+         "UOM": "Nos.",
+         "Unit": "KKC"
+      },
+      {
+         "Description": "\"Bagasse Carrier Chain with Swivel attachment as per Drawing No.KSC-971C Pitch 6\"\" assembled in 4 Ft. L\"",
+         "Drawing_No": "",
+         "Qty": "400",
+         "UOM": "Feet",
+         "Unit": "KKC"
+      },
+      {
+         "Description": "(Return Bagasse Carrier Slat Drawing No.KSC-1149A)",
+         "Drawing_No": "KSC-1149A",
+         "Qty": "50",
+         "UOM": "Nos.",
+         "Unit": "KKC"
+      }
+   ],
+   "KSS": [
+      {
+         "Description": "Pin for Auxiliary Cane Carrier Chain",
+         "Drawing_No": "KSCL-MH-196",
+         "Qty": "750",
+         "UOM": "Nos.",
+         "Unit": "KSS"
+      },
+      {
+         "Description": "Bush for Auxiliary Cane Carrier Chain",
+         "Drawing_No": "KSCL-MH-196",
+         "Qty": "750",
+         "UOM": "Nos.",
+         "Unit": "KSS"
+      },
+      {
+         "Description": "Roller for Auxillary Cane Carrier Chain ",
+         "Drawing_No": "KSCL-MH-196",
+         "Qty": "750",
+         "UOM": "Nos.",
+         "Unit": "KSS"
+      },
+      {
+         "Description": "Auxiliary Cane Carrier Slat",
+         "Drawing_No": "KSCL-MH-030",
+         "Qty": "10",
+         "UOM": "Nos.",
+         "Unit": "KSS"
+      },
+      {
+         "Description": "Pin for Cane Carrier Chain ",
+         "Drawing_No": "KSCL-MH-028/8",
+         "Qty": "2750",
+         "UOM": "Nos.",
+         "Unit": "KSS"
+      },
+      {
+         "Description": "Bush for Cane Carrier Chain ",
+         "Drawing_No": "KSCL-MH-028-B",
+         "Qty": "2750",
+         "UOM": "Nos.",
+         "Unit": "KSS"
+      },
+      {
+         "Description": "Roller for Cane Carrier Chain",
+         "Drawing_No": "KSCL-MH-028-B",
+         "Qty": "2750",
+         "UOM": "Nos.",
+         "Unit": "KSS"
+      },
+      {
+         "Description": "Inner Link for Cane Carrier Chain ",
+         "Drawing_No": "KSCL-MH-028-B",
+         "Qty": "1400",
+         "UOM": "Nos.",
+         "Unit": "KSS"
+      },
+      {
+         "Description": "Cane Carrier Slat ",
+         "Drawing_No": "KSCL-MH-071",
+         "Qty": "300",
+         "UOM": "Nos.",
+         "Unit": "KSS"
+      },
+      {
+         "Description": "Inner Link 1 for Feeder Table",
+         "Drawing_No": "KSCL-MH-207",
+         "Qty": "950",
+         "UOM": "Nos.",
+         "Unit": "KSS"
+      },
+      {
+         "Description": "Inner 2 for Feeder Table Chain",
+         "Drawing_No": "KSCL-MH-207",
+         "Qty": "950",
+         "UOM": "Nos.",
+         "Unit": "KSS"
+      },
+      {
+         "Description": "Outer Link 1 Feeder table chain ",
+         "Drawing_No": "KSCL-MH-207",
+         "Qty": "600",
+         "UOM": "Nos.",
+         "Unit": "KSS"
+      },
+      {
+         "Description": "Outer Link 2 Feeder table Chain",
+         "Drawing_No": "KSCL-MH-207",
+         "Qty": "600",
+         "UOM": "Nos.",
+         "Unit": "KSS"
+      },
+      {
+         "Description": "Pin for Feeder Table Chain ",
+         "Drawing_No": "KSCL-MH-128",
+         "Qty": "2000",
+         "UOM": "Nos.",
+         "Unit": "KSS"
+      },
+      {
+         "Description": "Bush for Feeder table chain",
+         "Drawing_No": "KSCL-MH-128",
+         "Qty": "2000",
+         "UOM": "Nos.",
+         "Unit": "KSS"
+      },
+      {
+         "Description": "Roller for Feeder Table Chain",
+         "Drawing_No": "KSCL-MH-128",
+         "Qty": "2000",
+         "UOM": "Nos.",
+         "Unit": "KSS"
+      },
+      {
+         "Description": "Inter Rack Carrier Chain 229 mm pitch forged stlle",
+         "Drawing_No": "KSCL-MH-014-Rev-02",
+         "Qty": "160",
+         "UOM": "Mtrs.",
+         "Unit": "KSS"
+      },
+      {
+         "Description": "Inner Link for Bagasse Elevator Chain ",
+         "Drawing_No": "KSCL-MH-058",
+         "Qty": "600",
+         "UOM": "Nos.",
+         "Unit": "KSS"
+      },
+      {
+         "Description": "MH Bagasse Elevator Slat ",
+         "Drawing_No": "KSCL-MH-023",
+         "Qty": "64",
+         "UOM": "Nos.",
+         "Unit": "KSS"
+      }
+   ],
+   "KSC": [
+      {
+         "Description": "Cotter Pin for Boiler Slat conveyor Chain",
+         "Drawing_No": "KSCL-BLR-206/A Rev. 02",
+         "Qty": "350",
+         "UOM": "Nos.",
+         "Unit": "KSC"
+      },
+      {
+         "Description": "Bush for Boiler Slat Conveyor Chain",
+         "Drawing_No": "KSCL-BLR-206/A Rev. 02",
+         "Qty": "1100",
+         "UOM": "Nos.",
+         "Unit": "KSC"
+      },
+      {
+         "Description": "Roller for Boiler Slat Conveyor Chain",
+         "Drawing_No": "KSCL-BLR-206/A Rev. 02",
+         "Qty": "1100",
+         "UOM": "Nos.",
+         "Unit": "KSC"
+      },
+      {
+         "Description": "Connection Pin for Boiler Slat Conveyor Chain",
+         "Drawing_No": "KSCL-BLR-206/A Rev. 02",
+         "Qty": "1100",
+         "UOM": "Nos.",
+         "Unit": "KSC"
+      },
+      {
+         "Description": "Inner Link for Boiler Slat Conveyor Chain",
+         "Drawing_No": "KSCL-BLR-205-Rev.0",
+         "Qty": "400",
+         "UOM": "Nos.",
+         "Unit": "KSC"
+      },
+      {
+         "Description": "Outer Link No.01 for Boiler Slat Conveyor Chain",
+         "Drawing_No": "KSCL-BLR-205-Rev.0",
+         "Qty": "250",
+         "UOM": "Nos.",
+         "Unit": "KSC"
+      },
+      {
+         "Description": "Outer Link No.02 for Boiler Slat Conveyor Chain",
+         "Drawing_No": "KSCL-BLR-205-Rev.0",
+         "Qty": "250",
+         "UOM": "Nos.",
+         "Unit": "KSC"
+      },
+      {
+         "Description": "Outer Link No.03 for Boiler Slat Conveyor Chain",
+         "Drawing_No": "KSCL-BLR-205-Rev.0",
+         "Qty": "200",
+         "UOM": "Nos.",
+         "Unit": "KSC"
+      }
+   ]
+}
