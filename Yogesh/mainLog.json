@@ -1,0 +1,57 @@
+{
+    "pending": {
+        "reqId1": {
+            "reqFile": "",
+            "quotedComp": {
+                "aravindkbarath3@gmail.com": {
+                    "cName": "Barath",
+                    "quote": true,
+                    "MailInfo": {
+                        "from": "Barath Aravind <aravindkbarath3@gmail.com>",
+                        "to": "teamclumsy.dev@gmail.com",
+                        "subject": "reqId1",
+                        "date": "Sun, 5 Jun 2022 20:09:03 +0530",
+                        "Attachments": [
+                            "C:\\Users\\Yogesh\\PycharmProjects\\EmailTrial\\Trail\\MailAttachments\\Emptyquotcsv.csv"
+                        ],
+                        "body": "Testing mail\r\n"
+                    }
+                },
+                "deviyani492@gmail.com": {
+                    "cName": "Devi",
+                    "quote": true,
+                    "MailInfo": {
+                        "from": "Deviyani <deviyani492@gmail.com>",
+                        "to": "teamclumsy.dev@gmail.com",
+                        "subject": "reqId1",
+                        "date": "Sun, 5 Jun 2022 20:49:54 +0530",
+                        "Attachments": [
+                            "C:\\Users\\Yogesh\\PycharmProjects\\EmailTrial\\Trail\\MailAttachments\\ML certificate.pdf"
+                        ],
+                        "body": "Gafa shhshs yshs\r\n"
+                    }
+                },
+                "aravindkbarath1@gmail.com": {
+                    "cName": "Barath part 2",
+                    "quote": false
+                }
+            },
+            "resFile": ""
+        },
+        "reqId2": {
+            "reqFile": "",
+            "quotedComp": {
+                "email1": {
+                    "cName": "",
+                    "quote": false
+                },
+                "email2": {
+                    "cName": "",
+                    "quote": false
+                }
+            },
+            "resFile": ""
+        }
+    },
+    "completed": {}
+}
