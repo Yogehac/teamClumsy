@@ -1,0 +1,47 @@
+{
+    "pending": {
+        "reqId1": {
+            "reqFile": "",
+            "quotedComp": {
+                "aravindkbarath3@gmail.com": {
+                    "cName": "Barathiiiii",
+                    "quote": false
+                },
+                "deviyani492@gmail.com": {
+                    "cName": "Devi",
+                    "quote": false
+                }
+            },
+            "resFile": ""
+        },
+        "reqId2": {
+            "reqFile": "",
+            "quotedComp": {
+                "email1": {
+                    "cName": "",
+                    "quote": false
+                },
+                "email2": {
+                    "cName": "",
+                    "quote": false
+                }
+            },
+            "resFile": ""
+        },
+        "799": {
+            "reqFile": "",
+            "quotedComp": {
+                "a": {
+                    "cName": "a",
+                    "quote": false
+                },
+                "de@gmail.com": {
+                    "cName": "devi",
+                    "quote": false
+                }
+            },
+            "resFile": ""
+        }
+    },
+    "completed": {}
+}

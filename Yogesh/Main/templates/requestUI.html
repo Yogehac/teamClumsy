@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request- {{data[0]}}</title>
+</head>
+<body>
+    <h2>Request ID - {{ data[0] }}</h2>
+    <ol>
+        {% for x in data[1][1] %}
+            <li>{{data[1][0]['quotedComp'][x]['cName']}} - {{data[1][0]['quotedComp'][x]['quote']}}</li>
+        {% endfor %}
+    </ol>
+    
+    <a href="/dashboard/{{data[0]}}/fetch">Fetch Mail</a><br><br>
+    <a href="../mainLog.json" download="{{data[0]}}">Final Excel</a><br><br>
+    <a href="/dashboard/{{data[0]}}/edit">Edit Request</a><br><br>
+    <a href="/dashboard/{{data[0]}}/delete">Delete Request</a><br><br>
+    <a href="/dashboard">Dashboard</a>
+
+</body>
+</html>

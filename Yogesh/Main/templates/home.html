@@ -1,0 +1,36 @@
+{% extends 'index.html' %}
+{% block header%}
+Dashboard 
+{% endblock %}
+{% block content %}
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <h5>Requests</h5>
+                <div class="card mb-3">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                  </div>
+
+            </div>
+            <div class="col-6">
+                    {% for x in reqs %}
+                    <div class="card my-3">
+                        <div class="card-body">
+                            <h5 class="card-title">{{x}}</h5>
+                            <div class="card-text mb-2">a while ago..</div>
+                            <a href="/dashboard/{{x}}" class="btn btn-info">open request</a>
+                        </div>
+                    </div>
+                        <!-- <li><a href="/dashboard/{{x}}">{{x}}</a></li> -->
+                    {% endfor %}
+            </div>
+        </div>
+    </div>
+    <a href="/dashboard/createRequest">Create request</a>
+{% endblock %}

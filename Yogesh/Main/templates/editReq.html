@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Request</title>
+</head>
+
+<body>
+    <h1>Create Request</h1>
+    <form action="http://127.0.0.1:5000/dashboard/{{d[0]}}/edit" method="POST" enctype="multipart/form-data">
+        <input type="text" placeholder="Request ID" name="reqID" value="{{d[0]}}">
+        <input type="file" placeholder="Upload file" name="file" accept=".xlsx,.xls,.csv">
+        <h3>Company details</h3>
+        <section>
+            {% for x in d[1][1] %}
+            {% set i = d[1][1].index(x) + 1 %}
+
+            <label id="{{i}}">Company {{ i }} : 
+                <input type="text" name="c{{i}}n" placeholder="Company name" value="{{ d[1][0]['quotedComp'][x]['cName'] }}">
+                <input type="text" name="c{{i}}e" placeholder="Email" value="{{x}}">
+                {% if i != 1 %}
+                <span onclick="remEl('{{i}}')">Delete</span>
+                {% endif %}
+                <br><br>
+            </label>
+            {% endfor %}
+        </section>
+        <div onclick="addComp()">Add Company</div><br><br>
+        <button type="submit">Create Request</button>
+    </form>
+    <a href="/dashboard/{{d[0]}}">Cancel</a>
+
+    <script>
+        let i =parseInt('{{d[1][1]|length}}') + 1;
+        const remEl = (id) => {
+            document.getElementById(`${id}`).remove();
+        }
+        
+        const addComp = ()=> {
+            const sec = document.querySelector('section');
+            const label = document.createElement('label');
+            label.id = `${i}`
+            label.innerHTML = `Company ${i} : <input name='c${i}n' placeholder='Company name'>
+            <input name='c${i}e' placeholder='Email'><span onclick='remEl(${i})'>Delete</span><br><br>`;
+            sec.appendChild(label);
+            i++;
+        }
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Request</title>
+</head>
+
+<body>
+    <h1>Create Request</h1>
+    <form action="http://127.0.0.1:5000/dashboard/createRequest" method="POST" enctype="multipart/form-data">
+        <input type="text" placeholder="Request ID" name="reqID" autofocus>
+        <input type="file" placeholder="Upload file" name="file" accept=".xlsx,.xls,.csv">
+        <h3>Company details</h3>
+        <section>
+            <label id="1">Company 1 : 
+                <input type="text" name="c1n" placeholder="Company name">
+                <input type="text" name="c1e" placeholder="Email"><br><br>
+            </label>
+        </section>
+        <div onclick="addComp()">Add Company</div><br><br>
+        <button type="submit">Create Request</button>
+    </form>
+    <a href="/dashboard">Cancel</a>
+    <script>
+        let i =2;
+        const remEl = (id) => {
+            document.getElementById(`${id}`).remove();
+        }
+        
+        const addComp = ()=> {
+            const sec = document.querySelector('section');
+            const label = document.createElement('label');
+            label.id = `${i}`
+            label.innerHTML = `Company ${i} : <input name='c${i}n' placeholder='Company name'>
+            <input name='c${i}e' placeholder='Email'><span onclick='remEl(${i})'>Delete</span><br><br>`;
+            sec.appendChild(label);
+            i++;
+        }
+        
+    </script>
+</body>
+
+</html>
