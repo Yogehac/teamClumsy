@@ -62,15 +62,48 @@ def makeResponse(res,quotes):
                 if a in j and b in j:
                     k[quotes[i]]=validate( extract_num(j[j.index(b) + len(b):]))[0]
     makeLog(A)       
-                    # print( validate(extract_num(j[j.index(b) + len(b):])))
 
-makeResponse('requuhh.json',{
-    r'response\swajit.xlsx':'swajit',
-    r'response\rajamar.xlsx':'rajmar',
-    r'response\sathish.xlsx':'sathish',
-    r'response\gee_ess.xlsx':'gee_ess'
-    })
+# makeResponse('requuhh.json',{
+#     r'response\swajit.xlsx':'swajit',
+#     r'response\rajamar.xlsx':'rajmar',
+#     r'response\sathish.xlsx':'sathish',
+#     r'response\gee_ess.xlsx':'gee_ess'
+#     })
+
+def writeLine(dic, t, u):
+    temp =''
+    if t ==  'k' : d = list(dic.keys())
+    else: d = list(dic.values())
+    for i in d:
+        if d.index(i) > 4:
+            if t =='k' : temp += str(i) + ',,'
+            else:  temp += str(i) + ',{},'.format(i * int(dic['Qty']))
+        else:
+            temp += str(i) + ','
+    if t == 'k': 
+        temp+='\n'
+        for i in d:    
+            if d.index(i) > 4:
+                temp += 'Rate,Amount,'
+            else: temp+=','
+        temp+='\n'
+    # if u != devi:
+    #     temp += '\n{}\n'.format(u) 
+    #     devi = u
+    # else:
+    #     temp+='\n'
+    temp+='\n'
+    return temp
+
+def makeFinal(jsfile,FF):
+    with open (jsfile,'r') as js:
+        x = json.load(js)
+    with open (FF,'w') as F:
+        F.write(writeLine(x[0], 'k', x[0]['Unit']))
+        for i in x:
+            F.write(writeLine(i, 'v', i['Unit']))
+
+        print('Done')
 
 
-
-    
+makeFinal(r'D:\VS_CODE\KOTHARI\res.json', 'final.csv')
