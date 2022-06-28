@@ -4,21 +4,22 @@ Dashboard
 {% endblock %}
 {% block content %}
     
-    <div class="container">
+    <div class="container mt-5">
         <div class="row">
-            <div class="col-6">
-                <h5>Requests</h5>
+            <div class="col col-md-6">
                 <div class="card mb-3">
-                    <img src="..." class="card-img-top" alt="...">
+                    
+                    <img src="https://images.indianexpress.com/2022/03/GettyImages-children-falling-injury-1200.jpg" class="card-img-top" alt="image here">
                     <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                      <h5 class="card-title"> <marquee behavior="alternate" direction="left">Team CLUMSY - Deviyani  |  Yogesh  |  Barath  |  Vijay</marquee> </h5>
+                      <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi aut libero, excepturi doloremque quia distinctio dolores ipsum asperiores laborum facilis nobis odio possimus cum amet temporibus quidem quas ab itaque.</p>
+                      <p class="card-text"><small class="text-muted">Not completed yet - some process remains</small></p>
                     </div>
                   </div>
 
             </div>
-            <div class="col-6">
+            <div class="col-md-6">
+                <h4 class="card-title">Pending Requests</h4>
                     {% for x in reqs %}
                     <div class="card my-3">
                         <div class="card-body">
@@ -32,5 +33,5 @@ Dashboard
             </div>
         </div>
     </div>
-    <a href="/dashboard/createRequest">Create request</a>
+
 {% endblock %}

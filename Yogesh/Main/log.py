@@ -67,29 +67,32 @@ def deleteReq(id):
 
 
 
+
+
+
 # createReq(a)
 # mail Log creation
-# mainLog = {
-#     'pending': {
-#         'reqId1': {
-#             'reqFile': '',
-#             'quotedComp': {
-#                 'aravindkbarath3@gmail.com': {'cName': 'Barath', 'quote': False},
-#                 "deviyani492@gmail.com": {'cName': 'Devi', 'quote': False}
-#             },
-#             'resFile': ''
-#         },
-#         'reqId2': {
-#             'reqFile': '',
-#             'quotedComp': {
-#                 'email1': {'cName': '', 'quote': False},
-#                 'email2': {'cName': '', 'quote': False}
-#             },
-#             'resFile': ''
-#         }
-#     },
-#     'completed': {}
-# }
+mainLog = {
+    'pending': {
+        'reqId1': {
+            'reqFile': '',
+            'quotedComp': {
+                'aravindkbarath3@gmail.com': {'cName': 'Barath', 'quote': False},
+                "deviyani492@gmail.com": {'cName': 'Devi', 'quote': False}
+            },
+            'resFile': ''
+        },
+        'reqId2': {
+            'reqFile': '',
+            'quotedComp': {
+                'email1': {'cName': '', 'quote': False},
+                'email2': {'cName': '', 'quote': False}
+            },
+            'resFile': ''
+        }
+    },
+    'completed': {}
+}
 
 
 # def makeLog(logDict):
@@ -99,4 +102,4 @@ def deleteReq(id):
 
 
 
-# makeLog(mainLog)
+makeLog(mainLog)

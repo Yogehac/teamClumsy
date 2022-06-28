@@ -1,24 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Request- {{data[0]}}</title>
-</head>
-<body>
-    <h2>Request ID - {{ data[0] }}</h2>
-    <ol>
-        {% for x in data[1][1] %}
-            <li>{{data[1][0]['quotedComp'][x]['cName']}} - {{data[1][0]['quotedComp'][x]['quote']}}</li>
-        {% endfor %}
-    </ol>
-    
-    <a href="/dashboard/{{data[0]}}/fetch">Fetch Mail</a><br><br>
-    <a href="../mainLog.json" download="{{data[0]}}">Final Excel</a><br><br>
-    <a href="/dashboard/{{data[0]}}/edit">Edit Request</a><br><br>
-    <a href="/dashboard/{{data[0]}}/delete">Delete Request</a><br><br>
-    <a href="/dashboard">Dashboard</a>
+{% extends 'index.html' %}
+{% block header%}
+Request- {{data[0]}}
+{% endblock %}
+{% block content %}
 
-</body>
-</html>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col col-md-6 offset-md-3">
+            <div class="card mb-3">
+                <div class="card-header  bg-info">
+                    <h3 class="card-title text-center">Request</h3>
+                </div>
+                <div clas
+                <div class="card-body">
+                    <h4 class="card-title">ID : {{ data[0] }}</h4>
+                    <h5 class="card-subtitle my-3">Company's</h5>
+                    <section>
+                        {% for x in data[1][1] %}
+                        <div class="card my-3">
+                            <div class="card-header d-flex align-items-center">
+                                <strong>{{data[1][1].index(x) + 1}}. {{data[1][0]['quotedComp'][x]['cName']}}</strong>
+                                {% if  data[1][0]['quotedComp'][x]['quote'] %}
+                                <div class="checkmark ms-auto text-success fs-5 fw-bold"><b>L</b></div>
+                                {% else %}
+                                <div class="sc btn-close ms-auto bg-danger"></div>
+                                {% endif %}
+                                <!-- <div class="spinner-border spinner-border-sm ms-auto"></div> -->
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text"><small class="card-text">mail : {{x}}</small></p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </section>
+                    <!-- <ol>
+                        {% for x in data[1][1] %}
+                        <li>{{data[1][0]['quotedComp'][x]['cName']}} - {{data[1][0]['quotedComp'][x]['quote']}}</li>
+                        {% endfor %}
+                    </ol>
+                    <div class="d-flex align-items-center">
+                        <strong>Loading...</strong>
+                        <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                      </div> -->
+
+                    <p class="card-text"><small class="text-muted">Not completed yet - some process remains</small></p>
+                    <a href="/dashboard/{{data[0]}}/fetch" onclick="sc()" class="btn btn-primary">Fetch Mail</a>
+                    <span class="fw-semibold">&nbsp; Click to Look for emails from the companys</span><br><br>
+
+                    <a href="../mainLog.json" download="{{data[0]}}" class="btn btn-success">Final Excel</a> 
+                    <span class="fw-semibold">&nbsp; Click to download the final output Excel</span><br><br>
+
+                    <a href="/dashboard/{{data[0]}}/edit" class="btn btn-warning">Edit Request</a>
+                    <a href="/dashboard/{{data[0]}}/delete" class="btn btn-danger">Delete Request</a><br><br>
+                    <!-- <a href="/dashboard" class="btn btn-info">Dashboard</a> -->
+                </div>
+            
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    const sc = () => {
+        let divs = document.querySelectorAll('.sc');
+        divs.forEach(function(div) {
+            div.className = 'spinner-border spinner-border-sm ms-auto';
+            div.innerText = '';
+        });
+    }
+</script>
+
+{% endblock %}

@@ -1,16 +1,69 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'index.html' %}
+{% block header%}
+Edit Request
+{% endblock %}
+{% block content %}
+<div class="row mt-5">
+    <div class="col-md-6 offset-md-3">
+        <div class="card">
+            <div class="card-header  bg-info">
+                <h3 class="card-title text-center">Edit Request</h3>
+            </div>
+            <div class="card-body">
+                <form action="http://127.0.0.1:5000/dashboard/{{d[0]}}/edit" method="POST"
+                    enctype="multipart/form-data">
+                    <div class="row my-3">
+                        <label for="id" class="col-sm-2 col-form-label">Request ID</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="id" name="reqID" class="form-control" value="{{d[0]}}">
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <label for="formFile" class="col-sm-2 col-form-label">Excel file</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="file" id="formFile" name="file" accept=".xlsx,.xls,.csv">
+                        </div>
+                    </div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Request</title>
-</head>
+                    <h5 class="card-title my-4">Company Details</h5>
+                    <section>
+                        {% for x in d[1][1] %}
+                        {% set i = d[1][1].index(x) + 1 %}
+                        <div class="card my-3" id="{{i}}">
+                            <div class="card-header d-flex align-items-center">
+                                <strong>Company {{i}}</strong>
+                                {% if i != 1 %}
+                                <div class="btn-close ms-auto" onclick="remEl('{{i}}')"></div>
+                                
+                                {% endif %}
 
-<body>
-    <h1>Create Request</h1>
-    <form action="http://127.0.0.1:5000/dashboard/{{d[0]}}/edit" method="POST" enctype="multipart/form-data">
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col">
+                                        <input type="text" class="form-control" name="c{{i}}n" placeholder="Company Name" value="{{ d[1][0]['quotedComp'][x]['cName'] }}">
+                                    </div>
+                                    <div class="col">
+                                        <input type="email" class="form-control" name="c{{i}}e" placeholder="Email" value="{{x}}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </section>
+                    <!-- <input type="file"  name="file" accept=".xlsx,.xls,.csv"> -->
+                    
+                    <div class="btn btn-primary" onclick="ad()">Add Company</div><br><br>
+                    <button class="btn btn-primary"type="submit">Update</button>
+                    <a class="btn btn-danger"href="/dashboard/{{d[0]}}">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!-- <form action="http://127.0.0.1:5000/dashboard/{{d[0]}}/edit" method="POST" enctype="multipart/form-data">
         <input type="text" placeholder="Request ID" name="reqID" value="{{d[0]}}">
         <input type="file" placeholder="Upload file" name="file" accept=".xlsx,.xls,.csv">
         <h3>Company details</h3>
@@ -31,9 +84,9 @@
         <div onclick="addComp()">Add Company</div><br><br>
         <button type="submit">Create Request</button>
     </form>
-    <a href="/dashboard/{{d[0]}}">Cancel</a>
+    <a href="/dashboard/{{d[0]}}">Cancel</a> -->
 
-    <script>
+    <!-- <script>
         let i =parseInt('{{d[1][1]|length}}') + 1;
         const remEl = (id) => {
             document.getElementById(`${id}`).remove();
@@ -49,7 +102,63 @@
             i++;
         }
         
+    </script> -->
+    <script>
+        let i = parseInt('{{d[1][1]|length}}') + 1;
+        const remEl = (id) => {
+            document.getElementById(`${id}`).remove();
+            i--;
+        }
+    
+        const addComp = () => {
+            const sec = document.querySelector('section');
+            const label = document.createElement('label');
+            label.id = `${i}`
+            label.innerHTML = `Company ${i} : <input name='c${i}n' placeholder='Company name'>
+                <input name='c${i}e' placeholder='Email'><span onclick='remEl(${i})'>Delete</span><br><br>`;
+            sec.appendChild(label);
+            i++;
+        }
+    
+        const ad = () =>{
+            const sec = document.querySelector('section');
+            const div1 = document.createElement('div');
+            const div2 = document.createElement('div');
+            const div3 = document.createElement('div');
+            const div4 = document.createElement('div');
+            const div5 = document.createElement('div');
+            const div6 = document.createElement('div');
+    
+    
+            div1.className = 'card my-3';
+            div1.id = `${i}`;
+    
+            div2.className = 'card-header d-flex align-items-center';
+            div2.innerHTML = `<strong>Company ${i}</strong>
+                            <div class="btn-close ms-auto" onclick='remEl(${i})'></div>`;
+    
+            div3.className = 'card-body';
+    
+            div4.className = 'row g-3';
+            
+            div5.className = 'col';
+            div5.innerHTML = `<input type="text" class="form-control" name="c${i}n" placeholder="Company Name">`;
+    
+            div6.className = 'col'
+            div6.innerHTML = `<input type="email" class="form-control" name="c${i}e" placeholder="Email">`;
+    
+            div4.appendChild(div5);
+            div4.appendChild(div6);
+            
+            div3.appendChild(div4);
+    
+            div1.appendChild(div2);
+            div1.appendChild(div3);
+    
+            sec.appendChild(div1);
+            i++;
+        }
+    
     </script>
-</body>
-
-</html>
+    
+{% endblock %}
