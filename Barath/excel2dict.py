@@ -1,10 +1,13 @@
 import json
-# import os
+import os
 import pandas as pd
+import pathlib
+
 def loadmain():
     with open(r"C:\Users\bhara\PycharmProjects\KothariSugars\teamClumsy-main\Yogesh\mainLog.json","r") as mainlog:
         mainjso = json.load(mainlog)
-    return mainjso
+        return mainjso
+
 def getreq(id):
     d = loadmain()
     return d["pending"][id]
@@ -12,6 +15,12 @@ def getreq(id):
 def makeLog(logDict):
     with open('res.json', 'w') as file:
         json.dump(logDict, file, indent=4)
+    print('Done')
+
+def getLog(somejson):
+    with open(somejson, 'r') as file:
+        requestdict = json.load(file)
+    return requestdict
     print('Done')
 
 
@@ -98,7 +107,7 @@ def extract_num(line):
 
 
 def validate(nums):
-    print(nums)
+    # print(nums)
     if len(nums) == 4:
         if 0 in nums:
             nums.pop(nums.index(0))
@@ -116,42 +125,43 @@ def validate(nums):
         return "NaN", nums
 
 
-def makeResponse(res, quotes):
-    A = res
-    print("makeResponse")
-    # print(quotes)
-    for k in A:
-        # print(k)
-        for i in quotes.keys():
-            print('Im in')
-            if i[-3:] != "csv":
-                x = pd.read_excel(r'{}'.format(i))
-                x.to_csv('{}.csv'.format(i), index=None, header=True)
-                with open('{}.csv'.format(i), 'r') as file:
-                    y = file.readlines()
-            else:
-                with open(i, 'r') as file:
-                    y = file.readlines()
-            print(y)
-            a, b = list(k.values())[:2]
-            for j in y[1:]:
-                if a in j and b in j:
-                    # print(a, b)
-                    # print(j)
-                    k[quotes[i]] = validate(extract_num(j[j.index(b) + len(b):]))[0]
-                    print('\n',k)
-    return A
-    # makeLog(A)
+# def makeResponse(res, quotes):
+#     A = getLog(res)
+#     print("makeResponse")
+#     # print(quotes)
+#     for k in A[:-1]:
+#         print(k)
+#         for i in quotes.keys():
+#             print('Im in')
+#             if i[-3:] != "csv":
+#                 x = pd.read_excel(r'{}'.format(i))
+#                 x.to_csv('{}.csv'.format(i), index=None, header=True)
+#                 with open('{}.csv'.format(i), 'r') as file:
+#                     y = file.readlines()
+#             else:
+#                 with open(i, 'r') as file:
+#                     y = file.readlines()
+#             # print(y)
+#             a, b = list(k.values())[:2]
+#             for j in y[1:]:
+#                 if a in j and b in j:
+#                     # print(a, b)
+#                     # print(j)
+#                     k[quotes[i]] = validate(extract_num(j[j.index(b) + len(b):]))[0]
+#                     print('\n',k)
+#             # print(k)
+#     return A
 
 
-# makeResponse('requuhh.json',{
-#     r'response\swajit.xlsx':'swajit',
-#     r'response\rajamar.xlsx':'rajmar',
-#     r'response\sathish.xlsx':'sathish',
-#     r'response\gee_ess.xlsx':'gee_ess'
-#     })
+# makeResponse('summaddaa.json',
+respopaths = {
+    r'C:\Users\bhara\PycharmProjects\KothariSugars\teamproject1\properresponse\proper_swajit.csv' : 'swajit',
+    r'C:\Users\bhara\PycharmProjects\KothariSugars\teamproject1\properresponse\proper_rajamar.xlsx':'rajmar',
+    r'C:\Users\bhara\PycharmProjects\KothariSugars\teamproject1\properresponse\proper_sathish.xlsx':'sathish',
+    r'C:\Users\bhara\PycharmProjects\KothariSugars\teamproject1\properresponse\proper_gee_ess.xlsx':'gee_ess'
+    }
 
-def writeLine(dic, t, u):
+def writeLine(dic, t, u=0):
     temp = ''
     if t == 'k':
         d = list(dic.keys())
@@ -184,10 +194,11 @@ def writeLine(dic, t, u):
 
 def makeFinal(jsonfile, FF):
     x = jsonfile
+    # print(x)
     with open(FF, 'w') as F:
-        F.write(writeLine(x[0], 'k', x[0]['Unit']))
+        F.write(writeLine(x[0], 'k'))
         for i in x:
-            F.write(writeLine(i, 'v', i['Unit']))
+            F.write(writeLine(i, 'v'))
 
         print('Done')
 
@@ -205,6 +216,42 @@ def clientDict(id):
     return d
 # clientDict('reqId1')
 
+
+
+def excel_to_csv(filename):
+    read_file = pd.read_excel(filename)
+
+    read_file.to_csv(os.path.splitext(filename)[0] + '.csv',
+                     index=None,
+                     header=True)
+
+    df = pd.DataFrame(pd.read_csv(os.path.splitext(filename)[0] + '.csv'))
+
+
+def getCSV(filename):
+    filename = pathlib.PureWindowsPath(filename).as_posix()
+    if os.path.splitext(filename)[1] == ".csv":
+        with open(filename, 'r') as file:
+            return file.readlines()
+    else:
+        excel_to_csv(filename)
+        with open(os.path.splitext(filename)[0] + '.csv', 'r') as file:
+            return file.readlines()
+
+def makeResponse(reqjson,quotationfiles):
+    # reqjsoncontent = getLog(reqjson)
+    for i in quotationfiles.keys():
+        resplist = getCSV(i)
+        for j in resplist[1:]:
+            for k in reqjson[:-1]:
+                desc,draw = list(k.values())[:2]
+                if desc in j and draw in j:
+                    k[quotationfiles[i]] = validate(extract_num(j[j.index(draw) + len(draw):]))[0]
+                    resplist.remove(j)
+    return reqjson
+        # print(resplist)
+# makeResonse("summaddaa.json",respopaths)
+
 def createReport(id):
     rid = getreq(id)
     print(rid,'\n')
@@ -215,6 +262,9 @@ def createReport(id):
     final = makeResponse(reqd,clientDict(id))
     print(final, '\n')
     makeFinal(final,"{}.csv".format(id))
+    rid["resFile"] = "{}.csv".format(id)
+    d = loadmain()
+    d["pending"][id] = rid
+    makeLog(d)
 
 createReport('reqId1')
-
