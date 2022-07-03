@@ -23,14 +23,15 @@ def parseReqLog(id):
 # id = 'reqId1'
 def mailWalk(id):
     reqLog, searchMails = parseReqLog(id)
-
+    
+    for q in searchMails:
+        if reqLog['quotedComp'][m]['quote']:
+            searchMails.remove(q)
 
     recM = m.getMail(id, searchMails)
 
-    print(recM)
     if len(recM[-1]) > 0:
         for x in recM[-1]:
-            # print(x)
             reqLog['quotedComp'][x]['quote'] = True
             reqLog['quotedComp'][x]['MailInfo'] = recM[recM[-1].index(x)]
         print('Successful Walk')
@@ -46,15 +47,15 @@ def mailWalk(id):
 # a = {'reqID': '1', 'c1n': 'devi', 'c1e': 'd@gamil.com'}
 
 def createReq(d):
-    req = {'reqFile' : '', 'quotedComp': {}, 'resFile':''}
-    l = list(d.keys())
+    req = {'reqFile' : d[0], 'quotedComp': {}, 'resFile':''}
+    l = list(d[1].keys())
     for x in l: 
         if x[-1] =='e':
             print(x)
-            req['quotedComp'][d[x]] = {'cName' : d[x[:-1]+'n'],
+            req['quotedComp'][d[1][x]] = {'cName' : d[1][x[:-1]+'n'],
                          'quote': False}
     log = getLog()
-    log['pending'][d['reqID']] = req
+    log['pending'][d[1]['reqID']] = req
     makeLog(log)
     print('success')
 
@@ -102,4 +103,4 @@ mainLog = {
 
 
 
-makeLog(mainLog)
+# makeLog(mainLog)

@@ -1,3 +1,4 @@
+import re
 from flask import Flask, render_template, request, url_for, redirect
 from werkzeug.utils import secure_filename
 import os
@@ -11,37 +12,33 @@ app.config['UPLOAD_FOLDER'] = 'F:/PROJECTS/Team Project/Main/Requests'
 @app.route('/', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST':
-        return redirect(url_for('dashboard'))
-    return render_template('login.html')
+        f = request.form
+        if m.login(f['email'], f['pword']):
+            return redirect(url_for('dashboard'))
+        else:
+            return render_template('login.html', d = True)
+    return render_template('login.html', d = False)
 
 
 @app.route('/dashboard', methods=['POST', 'GET'])
 def dashboard():
-    reqs = list(l.getLog()['pending'].keys())
-    return render_template('home.html', reqs=reqs)
+    if m.login():
+        reqs = list(l.getLog()['pending'].keys())
+        return render_template('home.html', reqs=reqs)
+    return redirect(url_for('login'))
     
-
-# @app.route('/dashboard', methods=['POST', 'GET'])
-# def dashboard():
-#     print(url_for('dashboard'))
-#     print(request.method)
-#     if request.method == 'POST':
-#         if True:
-#             reqs = list(l.getLog()['pending'].keys())
-#             return render_template('home.html', reqs=reqs)
-#         return redirect(url_for('login'))
-#     else:
-#         return redirect('login')
 
 
 @app.route('/dashboard/createRequest', methods=['GET', 'POST'])
 def createRequest():
     if request.method == 'POST':
         # print(dict(request.form))
-        l.createReq(dict(request.form))
         f = request.files['file']
+        a = 'no file'
         if f.filename:
             f.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f.filename)))
+            a = app.config['UPLOAD_FOLDER'] + f.filename
+        l.createReq([a, dict(request.form)])
         return redirect(url_for('dashboard'))
     else:
         return render_template('createReq.html')
@@ -67,10 +64,12 @@ def deleteReq(id):
 @app.route('/dashboard/<id>/edit', methods=['GET', 'POST'])
 def editReq(id):
     if request.method == 'POST':
-        l.createReq(dict(request.form))
         f = request.files['file']
+        a = 'no file'
         if f.filename:
             f.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f.filename)))
+            a = app.config['UPLOAD_FOLDER'] + f.filename
+        l.createReq([a, dict(request.form)])
         return redirect(url_for('dashboard'))
     else:
         d = l.parseReqLog(id)

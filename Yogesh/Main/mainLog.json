@@ -13,20 +13,6 @@
                 }
             },
             "resFile": ""
-        },
-        "reqId2": {
-            "reqFile": "",
-            "quotedComp": {
-                "email1": {
-                    "cName": "",
-                    "quote": false
-                },
-                "email2": {
-                    "cName": "",
-                    "quote": false
-                }
-            },
-            "resFile": ""
         }
     },
     "completed": {}

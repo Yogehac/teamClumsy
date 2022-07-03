@@ -1,24 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-</head>
-<body>
-    {% if utils %}
-        <p>Login Failed</p>
-    {% endif %}
+{% extends 'index.html' %}
+{% block header%}
+Login
+{% endblock %}
+{% block content %}
 
-    <h1>Login Form</h1>
-    <form action="/" method="POST">
-        <input type="email" placeholder="Email" name="email" autofocus required>
-        <input type="password" placeholder="Password" name="pword" required>
-        
+{% if d %}
+<div class="alert alert-danger alert-dismissible fade show remB" role="alert">
+    <strong>Wrong Email or Password</strong> - Try to to enter valid credentials
+    <button type="button" onclick='remb()' class="btn-close"></button>
+</div>
+{% endif %}
 
-        <button>Submit</button>
 
-    </form>
-</body>
-</html>
+<div class="row mt-5">
+    <div class="col-md-4 offset-md-4">
+        <div class="card">
+            <div class="card-header p">
+                <h3 class="card-title text-center">Email Login</h3>
+            </div>
+            <div class="card-body">
+                <form action="http://127.0.0.1:5000/" method="POST">
+                    <div class="row my-3">
+                        <label for="id" class="col-sm-3 col-form-label fw-bold">Email</label>
+                        <div class="col-sm-9">
+                            <input type="email" name="email" class="form-control fw-semibold" autofocus>
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <label for="id" class="col-sm-3 col-form-label fw-bold">Password</label>
+                        <div class="col-sm-9">
+                            <input type="password"  name="pword" class="form-control fw-semibold">
+                        </div>
+                    </div>
+                    
+
+                    <button class="btn btn-info" type="submit">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const remb = () => {
+        document.querySelector('.remB').remove()
+    }
+</script>
+{% endblock %}

@@ -2,19 +2,36 @@ import imaplib
 import email
 import json
 
+def getCred(m, c = 0):
+    if m == 'r':
+        with open('F:\PROJECTS\Team Project\Main\cred.bin', 'rb') as file:
+            y = file.readline()
+            return [len(y) != 0, *y.split(',')]
+    else:
+        with open('F:\PROJECTS\Team Project\Main\cred.bin', 'wb') as file:
+            file.write(c.encode('ascii'))
+
+            
 
 
-def login():
+def login(user = 0, code = 0):
     host = 'imap.gmail.com'
-    username = 'teamclumsy.dev@gmail.com'
-    pword = 'rdfuijesvobdertf'
+    mail = imaplib.IMAP4_SSL(host)
     try:
-        mail = imaplib.IMAP4_SSL(host)
-        mail.login(username, pword)
-        return mail
+        if user == 0:
+            c = getCred('r')
+            if c[0]:
+                mail.login(c[1], c[2])
+                return mail
+        else:
+            getCred('w', '{},{}'.format(user, code))
+            mail.login(user, code)
+            return mail
     except Exception:
         return False
-    
+
+# a = login() 
+# print('sucess' if a else 'Failed')
 
 
 # To get mail from the specified email

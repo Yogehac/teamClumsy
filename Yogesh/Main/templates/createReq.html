@@ -7,22 +7,22 @@ Create Request
 <div class="row mt-5">
     <div class="col-md-6 offset-md-3">
         <div class="card">
-            <div class="card-header  bg-info">
+            <div class="card-header p">
                 <h3 class="card-title text-center">Create Request</h3>
             </div>
             <div class="card-body">
                 <form action="http://127.0.0.1:5000/dashboard/createRequest" method="POST"
                     enctype="multipart/form-data">
                     <div class="row my-3">
-                        <label for="id" class="col-sm-2 col-form-label">Request ID</label>
-                        <div class="col-sm-10">
-                            <input type="text" id="id" name="reqID" class="form-control">
+                        <label for="id" class="col-sm-3 col-form-label fw-bold fs-5">Request ID</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="id" name="reqID" class="form-control fw-semibold">
                         </div>
                     </div>
                     <div class="row my-3">
-                        <label for="formFile" class="col-sm-2 col-form-label">Excel file</label>
-                        <div class="col-sm-10">
-                            <input class="form-control" type="file" id="formFile" name="file" accept=".xlsx,.xls,.csv">
+                        <label for="formFile" class="col-sm-3 col-form-label fw-bold fs-5">Excel file</label>
+                        <div class="col-sm-9">
+                            <input class="form-control fw-semibold" type="file" id="formFile" name="file" accept=".xlsx,.xls,.csv">
                         </div>
                     </div>
 
@@ -36,10 +36,10 @@ Create Request
                             <div class="card-body">
                                 <div class="row g-3">
                                     <div class="col">
-                                        <input type="text" class="form-control" name="c1n" placeholder="Company Name">
+                                        <input type="text" class="form-control fw-semibold" name="c1n" placeholder="Company Name">
                                     </div>
                                     <div class="col">
-                                        <input type="email" class="form-control" name="c1e" placeholder="Email">
+                                        <input type="email" class="form-control fw-semibold" name="c1e" placeholder="Email">
                                     </div>
                                 </div>
                             </div>
@@ -96,10 +96,10 @@ Create Request
         div4.className = 'row g-3';
         
         div5.className = 'col';
-        div5.innerHTML = `<input type="text" class="form-control" name="c${i}n" placeholder="Company Name">`;
+        div5.innerHTML = `<input type="text" class="form-control fw-semibold" name="c${i}n" placeholder="Company Name">`;
 
         div6.className = 'col'
-        div6.innerHTML = `<input type="email" class="form-control" name="c${i}e" placeholder="Email">`;
+        div6.innerHTML = `<input type="email" class="form-control fw-semibold" name="c${i}e" placeholder="Email">`;
 
         div4.appendChild(div5);
         div4.appendChild(div6);
