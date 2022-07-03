@@ -1,0 +1,43 @@
+{
+    "pending": {
+        "reqId1": {
+            "reqFile": "C:/Users/bhara/PycharmProjects/KothariSugars/teamproject1/Emptyquotcsv.csv",
+            "quotedComp": {
+                "aravindkbarath3@gmail.com": {
+                    "cName": "Barath",
+                    "quote": true,
+                    "MailInfo": {
+                        "from": "Barath Aravind <aravindkbarath3@gmail.com>",
+                        "to": "teamclumsy.dev@gmail.com",
+                        "subject": "reqId1",
+                        "date": "Sun, 5 Jun 2022 20:09:03 +0530",
+                        "Attachments": [
+                            "C:/Users/bhara/PycharmProjects/KothariSugars/teamproject1/sathish.xlsx"
+                        ],
+                        "body": "Testing mail\r\n"
+                    }
+                },
+                "deviyani492@gmail.com": {
+                    "cName": "Devi",
+                    "quote": true,
+                    "MailInfo": {
+                        "from": "Deviyani <deviyani492@gmail.com>",
+                        "to": "teamclumsy.dev@gmail.com",
+                        "subject": "reqId1",
+                        "date": "Sun, 5 Jun 2022 20:49:54 +0530",
+                        "Attachments": [
+                            "C:/Users/bhara/PycharmProjects/KothariSugars/teamproject1/swajit.csv"
+                        ],
+                        "body": "Gafa shhshs yshs\r\n"
+                    }
+                },
+                "aravindkbarath1@gmail.com": {
+                    "cName": "Barath part 2",
+                    "quote": false
+                }
+            },
+            "resFile": "reqId1.csv"
+        }
+    },
+    "completed": {}
+}
