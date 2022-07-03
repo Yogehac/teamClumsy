@@ -1,23 +1,26 @@
 import os
-import xlrd
-import csv
+import pandas as pd
 
-# Converting Excel to CSV
-def csv_from_excel(filename):
-    wb = xlrd.open_workbook(filename)
-    sh = wb.sheet_by_name('Sheet1')
-    your_csv_file = open(os.path.splitext(filename)[0]+'.csv', 'w')
-    wr = csv.writer(your_csv_file, quoting=csv.QUOTE_ALL)
+def excel_to_csv(filename):
+    read_file = pd.read_excel (filename)
+  
+    read_file.to_csv (os.path.splitext(filename)[0]+'.csv', 
+                      index = None,
+                      header = True)
 
-    for rownum in range(sh.nrows):
-        wr.writerow(sh.row_values(rownum))
+    df = pd.DataFrame(pd.read_csv(os.path.splitext(filename)[0]+'.csv'))
 
-    your_csv_file.close()
 
-    
-if __name__=="__main__":
-    filename = "D:/IA/sathish.xlsx"
-    if os.path.splitext(filename)[1] == ".xlsx":
-        csv_from_excel(filename)
+def getCSV(filename):
+    if os.path.splitext(filename)[1] == ".csv":
+        with open(filename, 'r') as file:
+            return file.readlines()
     else:
-        print("File extension not supported!!")
+        excel_to_csv(filename)
+        with open(os.path.splitext(filename)[0]+'.csv', 'r') as file:
+            return file.readlines()
+'''  
+if __name__=="__main__":
+    filename = "D:/IA/excel/sathish.xlsx"
+    getCSV(filename)
+'''
