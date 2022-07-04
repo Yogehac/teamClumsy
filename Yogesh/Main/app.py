@@ -1,13 +1,14 @@
-import re
-from flask import Flask, render_template, request, url_for, redirect
+from flask import Flask, render_template, request, url_for, redirect, send_file
 from werkzeug.utils import secure_filename
 import os
 import trial1 as m
 import log as l
+import paths as pp
+import makeReport as mk
 
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = 'F:/PROJECTS/Team Project/Main/Requests'
+app.config['UPLOAD_FOLDER'] = pp.requestDir
 
 @app.route('/', methods=['POST', 'GET'])
 def login():
@@ -37,7 +38,7 @@ def createRequest():
         a = 'no file'
         if f.filename:
             f.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f.filename)))
-            a = app.config['UPLOAD_FOLDER'] + f.filename
+            a = app.config['UPLOAD_FOLDER'] +'\\' + f.filename
         l.createReq([a, dict(request.form)])
         return redirect(url_for('dashboard'))
     else:
@@ -55,6 +56,15 @@ def fetch(id):
     return render_template('requestUI.html', data =[id, l.parseReqLog(id)])
 
 
+@app.route('/dashboard/<id>/download')
+def download(id):
+    path = pp.reports + '\{}.csv'.format(id)
+    if not os.path.exists(path):
+        mk.createReport(id)
+    return send_file(path, as_attachment=True)
+        
+
+
 @app.route('/dashboard/<id>/delete')
 def deleteReq(id):
     l.deleteReq(id)
@@ -68,7 +78,7 @@ def editReq(id):
         a = 'no file'
         if f.filename:
             f.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f.filename)))
-            a = app.config['UPLOAD_FOLDER'] + f.filename
+            a = app.config['UPLOAD_FOLDER'] +'\\' + f.filename
         l.createReq([a, dict(request.form)])
         return redirect(url_for('dashboard'))
     else:

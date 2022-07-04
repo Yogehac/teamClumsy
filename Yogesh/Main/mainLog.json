@@ -1,18 +1,24 @@
 {
     "pending": {
-        "reqId1": {
-            "reqFile": "",
+        "1234": {
+            "reqFile": "F:\\PROJECTS\\Team Project\\Main\\Requests\\Emptyquotcsv.csv",
             "quotedComp": {
-                "aravindkbarath3@gmail.com": {
-                    "cName": "Barath",
-                    "quote": false
-                },
                 "deviyani492@gmail.com": {
-                    "cName": "Devi",
-                    "quote": false
+                    "cName": "Devi and Co",
+                    "quote": true,
+                    "MailInfo": {
+                        "from": "Deviyani <deviyani492@gmail.com>",
+                        "to": "teamclumsy.dev@gmail.com",
+                        "subject": "1234",
+                        "date": "Mon, 4 Jul 2022 19:56:41 +0530",
+                        "Attachments": [
+                            "F:\\PROJECTS\\Team Project\\Main\\MailAttachments\\gee_ess (3).xlsx"
+                        ],
+                        "body": "awfxdcvhgyj hgvgvhkbhj yuhbkhg bhgjfyh hb jhgbk hbhbiuboui\r\nawfxdcvhgyj hgvgvhkbhj yuhbkhg bhgjfyh hb jhgbk hbhbiubouiawfxdcvhgyj\r\nhgvgvhkbhj yuhbkhg bhgjfyh hb jhgbk hbhbiubouiawfxdcvhgyj hgvgvhkbhj\r\nyuhbkhg bhgjfyh hb jhgbk hbhbiubouiawfxdcvhgyj hgvgvhkbhj yuhbkhg bhgjfyh\r\nhb jhgbk hbhbiubouiawfxdcvhgyj hgvgvhkbhj yuhbkhg bhgjfyh hb jhgbk\r\nhbhbiubouiawfxdcvhgyj hgvgvhkbhj yuhbkhg bhgjfyh hb jhgbk\r\nhbhbiubouiawfxdcvhgyj hgvgvhkbhj yuhbkhg bhgjfyh hb jhgbk\r\nhbhbiubouiawfxdcvhgyj hgvgvhkbhj yuhbkhg bhgjfyh hb jhgbk\r\nhbhbiubouiawfxdcvhgyj hgvgvhkbhj yuhbkhg bhgjfyh hb jhgbk\r\nhbhbiubouiawfxdcvhgyj hgvgvhkbhj yuhbkhg bhgjfyh hb jhgbk\r\nhbhbiubouiawfxdcvhgyj hgvgvhkbhj yuhbkhg bhgjfyh hb jhgbk hbhbiuboui\r\n"
+                    }
                 }
             },
-            "resFile": ""
+            "resFile": "F:\\PROJECTS\\Team Project\\Main\\Reports\\1234.csv"
         }
     },
     "completed": {}

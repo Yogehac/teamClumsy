@@ -1,14 +1,15 @@
 import json
 import trial1 as m
+import paths as pp
 
 def makeLog(logDict):
-    with open('F:\PROJECTS\Team Project\Main\mainLog.json', 'w') as file:
+    with open(pp.mainLog, 'w') as file:
         json.dump(logDict, file, indent=4)
         print('mainLog.json updated')
 
 
 def getLog():
-    with open('F:\PROJECTS\Team Project\Main\mainLog.json', 'r') as file:
+    with open(pp.mainLog, 'r') as file:
         return json.load(file)
 
 
@@ -21,11 +22,13 @@ def parseReqLog(id):
 
 
 # id = 'reqId1'
+# print(r'{}'.format(list(parseReqLog(id)[0]['quotedComp'].values())[0]['MailInfo']['Attachments'][0]))
+
 def mailWalk(id):
     reqLog, searchMails = parseReqLog(id)
     
     for q in searchMails:
-        if reqLog['quotedComp'][m]['quote']:
+        if reqLog['quotedComp'][q]['quote']:
             searchMails.remove(q)
 
     recM = m.getMail(id, searchMails)

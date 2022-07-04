@@ -1,18 +1,23 @@
 import imaplib
 import email
-import json
+import apple
+import paths as pp
 
 def getCred(m, c = 0):
     if m == 'r':
-        with open('F:\PROJECTS\Team Project\Main\cred.bin', 'rb') as file:
-            y = file.readline()
+        with open(pp.cred, 'rb') as file:
+            y = file.readline().decode()
+            if len(y) > 0: y = apple.decryptdata(y, 'appleSapten')
             return [len(y) != 0, *y.split(',')]
     else:
-        with open('F:\PROJECTS\Team Project\Main\cred.bin', 'wb') as file:
-            file.write(c.encode('ascii'))
+        with open(pp.cred, 'wb') as file:
+            file.write(apple.encryptdata(c, 'appleSapten'))
 
             
 
+
+# username = 'teamclumsy.dev@gmail.com'
+# pword = 'rdfuijesvobdertf'
 
 def login(user = 0, code = 0):
     host = 'imap.gmail.com'
@@ -20,6 +25,8 @@ def login(user = 0, code = 0):
     try:
         if user == 0:
             c = getCred('r')
+            print(c)
+
             if c[0]:
                 mail.login(c[1], c[2])
                 return mail

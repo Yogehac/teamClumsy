@@ -46,9 +46,11 @@ Request- {{data[0]}}
                     <p class="card-text"><small class="text-muted">Not completed yet - some process remains</small></p>
                     <a href="/dashboard/{{data[0]}}/fetch" onclick="sc()" class="btn btn-primary">Fetch Mail</a>
                     <span class="fw-semibold">&nbsp; Click to Look for emails from the companys</span><br><br>
-
-                    <a href="../mainLog.json" download="{{data[0]}}" class="btn btn-success">Final Excel</a> 
-                    <span class="fw-semibold">&nbsp; Click to download the final output Excel</span><br><br>
+                      <form action="/dashboard/{{data[0]}}/download">
+                          <button id='down' class="btn btn-success">Final Excel</button> 
+                          <span class="fw-semibold">&nbsp; Click to download the final output Excel</span><br><br>
+                      </form>
+                   
 
                     <a href="/dashboard/{{data[0]}}/edit" class="btn btn-warning">Edit Request</a>
                     <a href="/dashboard/{{data[0]}}/delete" class="btn btn-danger">Delete Request</a><br><br>
@@ -69,6 +71,11 @@ Request- {{data[0]}}
             div.innerText = '';
         });
     }
+    let d = document.querySelector('#down');
+    if(!document.querySelector('.checkmark')){
+        d.setAttribute('disabled', '')
+    } 
+
 </script>
 
 {% endblock %}
