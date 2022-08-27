@@ -1,0 +1,32 @@
+[
+    {
+      "id": 1,
+      "first_name": "Prasanth",
+      "last_name": "Parthiban",
+      "email": "prasanthkumar241197@gmail.com"
+    },
+    {
+      "id": 2,
+      "first_name": "Steve",
+      "last_name": "Palmer",
+      "email": "steve@codingthesmartway.com"
+    },
+    {
+      "id": 3,
+      "first_name": "Ann",
+      "last_name": "Smith",
+      "email": "ann@codingthesmartway.com"
+    },
+    {
+      "first_name": "Deviyani",
+      "last_name": "Parthiban",
+      "email": "deviyani.parthiban@gmail.com",
+      "id": 4
+    },
+    {
+      "first_name": "xyz",
+      "last_name": "xyz",
+      "email": "xyz.parthiban@gmail.com",
+      "id": 5
+    }
+  ]
