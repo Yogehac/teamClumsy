@@ -1,12 +1,12 @@
 {% extends 'index.html' %}
 {% block header%}
-Dashboard 
+Dashboard
 {% endblock %}
 {% block content %}
-    
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col col-md-6">
+
+<div class="container mt-5">
+    <div class="row">
+        <!-- <div class="col col-md-6">
                 <div class="card mb-3">    
                     <img src="https://www.qualitymag.com/ext/resources/Issues/2019/April/NDT/automation/shutterstock_1133982038.jpg?1554490030" class="card-img-top" alt="image here">
                     <div class="card-body">
@@ -16,21 +16,110 @@ Dashboard
                     </div>
                   </div>
 
-            </div>
-            <div class="col-md-6">
-                <h4 class="card-title">Pending Requests</h4>
-                    {% for x in reqs %}
-                    <div class="card my-3">
-                        <div class="card-body">
-                            <h5 class="card-title">{{x}}</h5>
-                            <div class="card-text mb-2">a while ago..</div>
-                            <a href="/dashboard/{{x}}" class="btn btn-info">open request</a>
+            </div> -->
+        <div class="col-md-8 offset-md-2">
+            <h4 class="card-title">Pending Requests</h4>
+            {% for x,y in reqs.items() %}
+            <div class="card my-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{x}}</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            {% for _,j in y['quotedComp'].items() %}
+                            <div class="card my-3">
+                                <div class="card-header d-flex align-items-center">
+                                    <strong>1. {{j['cName']}}</strong>
+                                    {% if j['quote'] %}
+                                    <div class="checkmark ms-auto text-success fs-5 fw-bold"><b>L</b></div>
+                                    {% else %}
+                                    <div class="sc btn-close ms-auto bg-danger {{j['cName']}}"></div>
+                                    {% endif %}
+                                    <!-- <div class="spinner-border spinner-border-sm ms-auto"></div> -->
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="col-md-6">
+                            <form action="/dashboard/{{x}}/download">
+                                <a href="/dashboard/{{x}}" class="btn btn-info">open request</a> <br><br>
+                                <button id='down' class="btn btn-success">Final Excel</button>
+                                <!-- <span class="fw-semibold">&nbsp; Click to download the final output Excel</span><br><br> -->
+                            </form>
                         </div>
                     </div>
-                        <!-- <li><a href="/dashboard/{{x}}">{{x}}</a></li> -->
-                    {% endfor %}
+                </div>
+
+
+
+
             </div>
+
+
+            <!-- <li><a href="/dashboard/{{x}}">{{x}}</a></li> -->
+            {% endfor %}
         </div>
     </div>
+</div>
+
+
+<script>
+    let ajaxInterval = 10;
+    let reqIds = JSON.parse('{{ ids|safe }}');
+
+
+    const sc = () => {
+        let divs = document.querySelectorAll('.sc');
+        divs.forEach(function (div) {
+            div.className = 'spinner-border spinner-border-sm ms-auto';
+            div.innerText = '';
+        });
+    }
+
+    const enableReport = () => {
+        let d = document.querySelector('#down');
+        if (!document.querySelector('.checkmark')) {
+            d.disabled = true;
+        } else { d.disabled = false; }
+        console.dir(d);
+    }
+    // enableReport(); //for first instance
+
+    const getData = async (url) => {
+        // const config = { headers: { Accept: 'application/json' } };
+        const result = await axios.get(url);
+        return result;
+    };
+
+    let call = (id) => {
+        let req = getData(`http://127.0.0.1:5000/dashboard/${id}/ajaxFetch`);
+        req.then((res) => {
+            data = res.data.c
+            if (data) {
+                for (let i of data) {
+                    let divs = document.querySelectorAll(`.${i.split(' ')[0]}`);
+                    divs.forEach(function (div) {
+                        div.className = 'checkmark ms-auto text-success fs-5 fw-bold';
+                        div.innerHTML = '<b>L</b>';
+                    });
+                }
+
+            }
+        });
+        req.catch((err) => {
+            console.log(err);
+        });
+    };
+
+    // Ajax Calling
+
+    // let timer = setInterval(() => {
+    //     enableReport();
+    //     for (let i of reqIds) {
+    //         call(i);
+    //     }
+
+    // }, ajaxInterval * 1000);
+
+</script>
 
 {% endblock %}

@@ -1,24 +1,42 @@
 {
     "pending": {
-        "1234": {
-            "reqFile": "F:\\PROJECTS\\Team Project\\Main\\Requests\\Emptyquotcsv.csv",
+        "001": {
+            "reqFile": "no file",
             "quotedComp": {
                 "deviyani492@gmail.com": {
-                    "cName": "Devi and Co",
+                    "cName": "Devi steles",
                     "quote": true,
                     "MailInfo": {
                         "from": "Deviyani <deviyani492@gmail.com>",
-                        "to": "teamclumsy.dev@gmail.com",
-                        "subject": "1234",
-                        "date": "Mon, 4 Jul 2022 19:56:41 +0530",
+                        "to": "teamclumsy@outlook.com",
+                        "subject": "001",
+                        "date": "Sat, 12 Nov 2022 20:24:54 +0530",
                         "Attachments": [
-                            "F:\\PROJECTS\\Team Project\\Main\\MailAttachments\\gee_ess (3).xlsx"
+                            "F:\\PROJECTS\\Team Project\\Main\\MailAttachments\\main-qimg-b8c3629bc3f6e9af9d652400eab4a202-lq.jpeg"
                         ],
-                        "body": "awfxdcvhgyj hgvgvhkbhj yuhbkhg bhgjfyh hb jhgbk hbhbiuboui\r\nawfxdcvhgyj hgvgvhkbhj yuhbkhg bhgjfyh hb jhgbk hbhbiubouiawfxdcvhgyj\r\nhgvgvhkbhj yuhbkhg bhgjfyh hb jhgbk hbhbiubouiawfxdcvhgyj hgvgvhkbhj\r\nyuhbkhg bhgjfyh hb jhgbk hbhbiubouiawfxdcvhgyj hgvgvhkbhj yuhbkhg bhgjfyh\r\nhb jhgbk hbhbiubouiawfxdcvhgyj hgvgvhkbhj yuhbkhg bhgjfyh hb jhgbk\r\nhbhbiubouiawfxdcvhgyj hgvgvhkbhj yuhbkhg bhgjfyh hb jhgbk\r\nhbhbiubouiawfxdcvhgyj hgvgvhkbhj yuhbkhg bhgjfyh hb jhgbk\r\nhbhbiubouiawfxdcvhgyj hgvgvhkbhj yuhbkhg bhgjfyh hb jhgbk\r\nhbhbiubouiawfxdcvhgyj hgvgvhkbhj yuhbkhg bhgjfyh hb jhgbk\r\nhbhbiubouiawfxdcvhgyj hgvgvhkbhj yuhbkhg bhgjfyh hb jhgbk\r\nhbhbiubouiawfxdcvhgyj hgvgvhkbhj yuhbkhg bhgjfyh hb jhgbk hbhbiuboui\r\n"
+                        "body": "Aasgsgdv sjsjsbsb xyshsbbsgwusbs shehsnsvs uusienwwh ushsvwuw jsjsbbsh\r\n"
+                    }
+                },
+                "barath@gmail.com": {
+                    "cName": "Bara trader's",
+                    "quote": false
+                },
+                "yogeshwaranarumgam@gmail.com": {
+                    "cName": "Yoge",
+                    "quote": true,
+                    "MailInfo": {
+                        "from": "Yogeshwaran A <yogeshwaranarumgam@gmail.com>",
+                        "to": "teamclumsy@outlook.com",
+                        "subject": "001",
+                        "date": "Sat, 12 Nov 2022 17:50:40 +0530",
+                        "Attachments": [
+                            "F:\\PROJECTS\\Team Project\\Main\\MailAttachments\\TataSteel.xlsx"
+                        ],
+                        "body": "hello, testing 1\r\n"
                     }
                 }
             },
-            "resFile": "F:\\PROJECTS\\Team Project\\Main\\Reports\\1234.csv"
+            "resFile": ""
         }
     },
     "completed": {}

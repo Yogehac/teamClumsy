@@ -22,7 +22,8 @@ Create Request
                     <div class="row my-3">
                         <label for="formFile" class="col-sm-3 col-form-label fw-bold fs-5">Excel file</label>
                         <div class="col-sm-9">
-                            <input class="form-control fw-semibold" type="file" id="formFile" name="file" accept=".xlsx,.xls,.csv">
+                            <input class="form-control fw-semibold" type="file" id="formFile" name="file"
+                                accept=".xlsx,.xls,.csv">
                         </div>
                     </div>
 
@@ -31,25 +32,44 @@ Create Request
                         <div class="card my-3" id="1">
                             <div class="card-header d-flex align-items-center">
                                 <strong>Company 1</strong>
-                                
+
                             </div>
                             <div class="card-body">
                                 <div class="row g-3">
                                     <div class="col">
-                                        <input type="text" class="form-control fw-semibold" name="c1n" placeholder="Company Name">
+                                        <input type="text" class="form-control fw-semibold" name="c1n"
+                                            placeholder="Company Name">
                                     </div>
                                     <div class="col">
-                                        <input type="email" class="form-control fw-semibold" name="c1e" placeholder="Email">
+                                        <input type="email" class="form-control fw-semibold" name="c1e"
+                                            placeholder="Email">
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </section>
                     <!-- <input type="file"  name="file" accept=".xlsx,.xls,.csv"> -->
-                    
+
                     <div class="btn btn-primary" onclick="ad()">Add Company</div><br><br>
-                    <button class="btn btn-primary"type="submit">Create Request</button>
-                    <a class="btn btn-danger"href="/dashboard">Cancel</a>
+
+                    <h5 class="card-title my-4">Mail Content</h5>
+                    <section class="my-4">
+                        <div class="row my-3">
+                            <label for="subject" class="col-sm-3 col-form-label fs-5">Request ID</label>
+                            <div class="col-sm-9">
+                                <input type="text" id="subject" name="subject" class="form-control fw-semibold">
+                            </div>
+                        </div>
+                        <div class="row my-3">
+                            <label for="mail-body" class="col-sm-3 col-form-label fs-5">Body</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" id="mail-body" name="mail-body" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </section>
+
+                    <button class="btn btn-primary" type="submit">Create Request</button>
+                    <a class="btn btn-danger" href="/dashboard">Cancel</a>
                 </form>
             </div>
         </div>
@@ -74,7 +94,7 @@ Create Request
         i++;
     }
 
-    const ad = () =>{
+    const ad = () => {
         const sec = document.querySelector('section');
         const div1 = document.createElement('div');
         const div2 = document.createElement('div');
@@ -94,7 +114,7 @@ Create Request
         div3.className = 'card-body';
 
         div4.className = 'row g-3';
-        
+
         div5.className = 'col';
         div5.innerHTML = `<input type="text" class="form-control fw-semibold" name="c${i}n" placeholder="Company Name">`;
 
@@ -103,7 +123,7 @@ Create Request
 
         div4.appendChild(div5);
         div4.appendChild(div6);
-        
+
         div3.appendChild(div4);
 
         div1.appendChild(div2);

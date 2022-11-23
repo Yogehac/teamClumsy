@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, url_for, redirect, send_file, jsonify
 from flask_cors import CORS
 
+import json
+
 from werkzeug.utils import secure_filename
 import os
 import trial1 as m
@@ -27,11 +29,19 @@ def login():
     return render_template('login.html', d=False)
 
 
+# @app.route('/dashboard', methods=['POST', 'GET'])
+# def dashboard():
+#     if isAuthorized:
+#         reqs = list(l.getLog()['pending'].keys())
+#         return render_template('home.html', reqs=reqs)
+    # return redirect(url_for('login'))
+
 @app.route('/dashboard', methods=['POST', 'GET'])
 def dashboard():
     if isAuthorized:
-        reqs = list(l.getLog()['pending'].keys())
-        return render_template('home.html', reqs=reqs)
+        reqs = l.getLog()['pending']
+        ids = list(reqs.keys())
+        return render_template('home.html', reqs=reqs, ids=json.dumps(ids))
     return redirect(url_for('login'))
 
 
@@ -53,14 +63,23 @@ def createRequest():
 
 @app.route('/dashboard/<id>')
 def requesUI(id):
-    # return render_template('requestUI.html', data=[id, l.parseReqLog(id)])
-    return jsonify([id, l.parseReqLog(id)])
+    return render_template('requestUI.html', data=[id, l.parseReqLog(id)])
+    # return jsonify([id, l.parseReqLog(id)])
 
 
 @app.route('/dashboard/<id>/fetch')
 def fetch(id):
     l.mailWalk(id)
     return render_template('requestUI.html', data=[id, l.parseReqLog(id)])
+
+# SPEACIAL ROUTE : for api purpose
+
+
+@app.route('/dashboard/<id>/ajaxFetch', methods=['GET', 'POST'])
+def ajaxFetch(id):
+    if request.method == 'GET':
+        companies = l.mailWalk(id)
+        return jsonify({'c': companies})
 
 
 @app.route('/dashboard/<id>/download')
