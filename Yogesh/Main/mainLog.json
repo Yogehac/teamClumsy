@@ -1,43 +1,4 @@
 {
-    "pending": {
-        "001": {
-            "reqFile": "no file",
-            "quotedComp": {
-                "deviyani492@gmail.com": {
-                    "cName": "Devi steles",
-                    "quote": true,
-                    "MailInfo": {
-                        "from": "Deviyani <deviyani492@gmail.com>",
-                        "to": "teamclumsy@outlook.com",
-                        "subject": "001",
-                        "date": "Sat, 12 Nov 2022 20:24:54 +0530",
-                        "Attachments": [
-                            "F:\\PROJECTS\\Team Project\\Main\\MailAttachments\\main-qimg-b8c3629bc3f6e9af9d652400eab4a202-lq.jpeg"
-                        ],
-                        "body": "Aasgsgdv sjsjsbsb xyshsbbsgwusbs shehsnsvs uusienwwh ushsvwuw jsjsbbsh\r\n"
-                    }
-                },
-                "barath@gmail.com": {
-                    "cName": "Bara trader's",
-                    "quote": false
-                },
-                "yogeshwaranarumgam@gmail.com": {
-                    "cName": "Yoge",
-                    "quote": true,
-                    "MailInfo": {
-                        "from": "Yogeshwaran A <yogeshwaranarumgam@gmail.com>",
-                        "to": "teamclumsy@outlook.com",
-                        "subject": "001",
-                        "date": "Sat, 12 Nov 2022 17:50:40 +0530",
-                        "Attachments": [
-                            "F:\\PROJECTS\\Team Project\\Main\\MailAttachments\\TataSteel.xlsx"
-                        ],
-                        "body": "hello, testing 1\r\n"
-                    }
-                }
-            },
-            "resFile": ""
-        }
-    },
+    "pending": {},
     "completed": {}
 }

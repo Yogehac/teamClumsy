@@ -2,10 +2,21 @@ import imaplib
 import email
 import apple
 import paths as pp
+import log as l
 
+import openpyxl
+import os
+
+import time
 # sending email
 from redmail import outlook as ol
 from pathlib import Path
+
+
+def clearCred():
+    with open(pp.cred, 'wb') as file:
+        file.write(b'logout')
+    print('Logged Out')
 
 
 def getCred(mode, c=0):
@@ -31,12 +42,10 @@ def login(user=0, code=0, outlook=False):
     host = 'outlook.office365.com'
     mail = imaplib.IMAP4_SSL(host)
 
-    # user = 'teamclumsy@outlook.com'
-    # code = 'q9sVuALduSb@JY!5'
     try:
         if user == 0:
             c = getCred('r')
-            print(c)
+            # print(c)
 
             if c[0]:
                 mail.login(c[1], c[2])
@@ -49,16 +58,21 @@ def login(user=0, code=0, outlook=False):
         return False
 
 
-# a = login()
+# user = 'teamclumsy@outlook.com'
+# code = 'q9sVuALduSb@JY!5'
+# # # print(login())
+
+# a = login(user, code)
+# # a = login()
 # print('sucess' if a else 'Failed')
+# print(cmp.isAuthorized)
 
-
-mail = login()
 
 # To get mail from the specified email
 
 
 def getMail(id, searchMails):
+    mail = login()
     if mail:
         AllMails = []
         signals = []
@@ -137,18 +151,39 @@ def parseHim():
 # parseHim()
 
 
-def sendMail():
+def sendMail(data, id):
     cred = getCred('r')
-
+    print('in Mail')
     if(cred[0]):
+        folder = pp.requestDir+f'\{id}\\'
+        if not os.path.exists(folder):
+            os.mkdir(folder)
+            print('created')
+        status = {}
         _, ol.username, ol.password = cred
 
-        ol.send(
-            receivers=["deviyani492@gmail.com"],
-            subject="Test 1",
-            text="Hi, From py",
-            attachments={
-                'devi.jpeg': Path('F:\\PROJECTS\\Team Project\\Main\\MailAttachments\\devi.jpeg')
-            }
+        for i, j in data['quotedComp'].items():
+            try:
+                wb = openpyxl.load_workbook(data['reqFile'])
+                sheet = wb.active
+                sheet['A1'] = 'From\n' + '\t' + j['cName'] + \
+                    '\n\tEmail : ' + i + '\n\tAddress :' + j['address']
+                file = j['cName']+'Req' + '.' + data['reqFile'].split('.')[-1]
+                wb.save(folder + file)
+                wb.close()
 
-        )
+                ol.send(
+                    receivers=[i],
+                    subject=data['Mail Content']['subject'],
+                    text=data['Mail Content']['body'],
+                    attachments={file: Path(folder + file)}
+                )
+                status[i] = time.ctime()
+            except Exception as e:
+                print(f'Error while sending mail to {i} : ', e)
+        l.mailStatusUpd(id, status)
+
+
+# dd = [{'reqFile': 'no file', 'quotedComp': {'deviyani492@gmail.com': {'cName': 'Devi steles', 'quote': False}, 'barath@gmail.com': {'cName': "Bara trader's", 'quote': False}, 'yogeshwaranarumgam@gmail.com': {
+#     'cName': 'Yoge', 'quote': False}}, 'resFile': '', 'Mail Content': {'subject': 'hello sdjkfh', 'body': 'ndjkgbjksbdfbhdddd'}}, ['deviyani492@gmail.com', 'barath@gmail.com', 'yogeshwaranarumgam@gmail.com']]
+# sendMail(dd[0], '001')

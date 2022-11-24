@@ -16,14 +16,14 @@ Create Request
                     <div class="row my-3">
                         <label for="id" class="col-sm-3 col-form-label fw-bold fs-5">Request ID</label>
                         <div class="col-sm-9">
-                            <input type="text" id="id" name="reqID" class="form-control fw-semibold">
+                            <input type="text" id="id" name="reqID" class="form-control fw-semibold" required>
                         </div>
                     </div>
                     <div class="row my-3">
                         <label for="formFile" class="col-sm-3 col-form-label fw-bold fs-5">Excel file</label>
                         <div class="col-sm-9">
                             <input class="form-control fw-semibold" type="file" id="formFile" name="file"
-                                accept=".xlsx,.xls,.csv">
+                                accept=".xlsx,.xls,.csv" required>
                         </div>
                     </div>
 
@@ -32,18 +32,25 @@ Create Request
                         <div class="card my-3" id="1">
                             <div class="card-header d-flex align-items-center">
                                 <strong>Company 1</strong>
-
                             </div>
                             <div class="card-body">
                                 <div class="row g-3">
-                                    <div class="col">
-                                        <input type="text" class="form-control fw-semibold" name="c1n"
-                                            placeholder="Company Name">
+                                    <div class="col ">
+                                        <input id="c1n" oninput="handle_click('c1n')" list="c1ndl"
+                                            class="form-control fw-semibold" name="c1n" placeholder="Company Name"
+                                            autocomplete="off" required>
+                                        <datalist id="c1ndl">
+                                        </datalist>
                                     </div>
                                     <div class="col">
-                                        <input type="email" class="form-control fw-semibold" name="c1e"
-                                            placeholder="Email">
+                                        <input id="c1e" type="email" class="form-control fw-semibold" name="c1e"
+                                            id="mail" placeholder="Email" autocomplete="off" required>
                                     </div>
+                                </div>
+                                <div class="form-floating my-3">
+                                    <textarea class="form-control" placeholder="Company Address" id="c1a" name="c1a"
+                                        style="height: 100px" required></textarea>
+                                    <label for="c1a">Address</label>
                                 </div>
                             </div>
                         </div>
@@ -55,15 +62,17 @@ Create Request
                     <h5 class="card-title my-4">Mail Content</h5>
                     <section class="my-4">
                         <div class="row my-3">
-                            <label for="subject" class="col-sm-3 col-form-label fs-5">Request ID</label>
+                            <label for="subject" class="col-sm-3 col-form-label fs-5">Subject</label>
                             <div class="col-sm-9">
-                                <input type="text" id="subject" name="subject" class="form-control fw-semibold">
+                                <input type="text" id="subject" name="subject" class="form-control fw-semibold"
+                                    required>
                             </div>
                         </div>
                         <div class="row my-3">
                             <label for="mail-body" class="col-sm-3 col-form-label fs-5">Body</label>
                             <div class="col-sm-9">
-                                <textarea class="form-control" id="mail-body" name="mail-body" rows="3"></textarea>
+                                <textarea class="form-control" id="mail-body" name="mail-body" rows="3"
+                                    required></textarea>
                             </div>
                         </div>
                     </section>
@@ -78,6 +87,10 @@ Create Request
 
 
 <script>
+    let companies = JSON.parse('{{ data|safe }}');
+    console.log(companies);
+    let cname = Object.keys(companies);
+
     let i = 2;
     const remEl = (id) => {
         document.getElementById(`${id}`).remove();
@@ -88,13 +101,42 @@ Create Request
         const sec = document.querySelector('section');
         const label = document.createElement('label');
         label.id = `${i}`
-        label.innerHTML = `Company ${i} : <input name='c${i}n' placeholder='Company name'>
-            <input name='c${i}e' placeholder='Email'><span onclick='remEl(${i})'>Delete</span><br><br>`;
+        label.innerHTML = `Company ${i} : <input name='c${i}n' placeholder='Company name' autocomplete='off'>
+            <input name='c${i}e' placeholder='Email' autocomplete ='off'><span onclick='remEl(${i})'>Delete</span><br><br>`;
         sec.appendChild(label);
         i++;
     }
 
+
+
+    const handle_click = (id) => {
+        const cName = document.getElementById(id);
+        if (companies[cName.value]) {
+            document.getElementById(`c${id[1]}e`).value = companies[cName.value]['email'];
+            document.getElementById(`c${id[1]}a`).innerText = companies[cName.value]['address'];
+        }
+        else {
+            document.getElementById(`c${id[1]}e`).value = '';
+            document.getElementById(`c${id[1]}a`).innerText = '';
+        }
+
+
+    }
+
+    const create_option = (id) => {
+        const dl_id = document.getElementById(id);
+        let temp = " ";
+        for (let i of cname) {
+            temp += `<option value = '${i}'>`;
+        }
+        dl_id.innerHTML = temp;
+    }
+
+
+    create_option('c1ndl');
+
     const ad = () => {
+
         const sec = document.querySelector('section');
         const div1 = document.createElement('div');
         const div2 = document.createElement('div');
@@ -102,6 +144,7 @@ Create Request
         const div4 = document.createElement('div');
         const div5 = document.createElement('div');
         const div6 = document.createElement('div');
+        const divAdres = document.createElement('div');
 
 
         div1.className = 'card my-3';
@@ -116,22 +159,35 @@ Create Request
         div4.className = 'row g-3';
 
         div5.className = 'col';
-        div5.innerHTML = `<input type="text" class="form-control fw-semibold" name="c${i}n" placeholder="Company Name">`;
+        div5.innerHTML = `<input id="c${i}n" oninput = "handle_click('c${i}n')" list= "c${i}ndl" class="form-control fw-semibold" name="c${i}n" placeholder="Company Name" autocomplete = "off">
+        <datalist id="c${i}ndl"></datalist>`;
 
-        div6.className = 'col'
-        div6.innerHTML = `<input type="email" class="form-control fw-semibold" name="c${i}e" placeholder="Email">`;
+
+
+        div6.className = 'col';
+        div6.innerHTML = `<input id="c${i}e" type="email" class="form-control fw-semibold" name="c${i}e" placeholder="Email" autocomplete ="off">`;
+
+        divAdres.className = 'form-floating my-3';
+        divAdres.innerHTML = `<textarea class="form-control" placeholder="Company Address" id="c${i}a" name="c${i}a"
+                                        style="height: 100px" required></textarea>
+                                    <label for="c${i}a">Address</label>`;
+
 
         div4.appendChild(div5);
         div4.appendChild(div6);
 
         div3.appendChild(div4);
+        div3.appendChild(divAdres);
 
         div1.appendChild(div2);
         div1.appendChild(div3);
 
         sec.appendChild(div1);
+        create_option(`c${i}ndl`);
         i++;
     }
+
+
 
 </script>
 {% endblock %}

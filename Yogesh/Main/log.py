@@ -1,6 +1,12 @@
 import json
 import trial1 as m
+import companies as cmp
 import paths as pp
+
+import os
+import shutil
+
+# isAuthorized = False
 
 
 def makeLog(logDict):
@@ -20,9 +26,6 @@ def parseReqLog(id):
 
     return [log, mails]
 
-
-# id = 'reqId1'
-# print(r'{}'.format(list(parseReqLog(id)[0]['quotedComp'].values())[0]['MailInfo']['Attachments'][0]))
 
 def mailWalk(id):
     reqLog, searchMails = parseReqLog(id)
@@ -55,23 +58,54 @@ def mailWalk(id):
         return gotMail
 
 
-# a = {'reqID': '1', 'c1n': 'devi', 'c1e': 'd@gamil.com'}
-
-def createReq(d):
+def createReq(d, s=False):
+    print(d)
     req = {'reqFile': d[0], 'quotedComp': {}, 'resFile': ''}
     l = list(d[1].keys())
+
+    compData = {}
     for x in l:
         if x[-1] == 'e':
             print(x)
             req['quotedComp'][d[1][x]] = {'cName': d[1][x[:-1]+'n'],
+                                          'address': d[1][x[:-1]+'a'],
+                                          'Mail sent': 'Not sent',
                                           'quote': False}
+            compData[d[1][x[:-1]+'n']] = {
+                'email': d[1][x],
+                'address': d[1][x[:-1]+'a']
+            }
+
+    req['Mail Content'] = {
+        'subject': d[1]['subject'],
+        'body': d[1]['mail-body']
+    }
+
     log = getLog()
     log['pending'][d[1]['reqID']] = req
     makeLog(log)
+    cmp.updateData(compData)
     print('success')
+    if s:
+        m.sendMail(parseReqLog(d[1]['reqID'])[0], d[1]['reqID'])
+
+
+def mailStatusUpd(id, success):
+    d = parseReqLog(id)[0]
+    for mailId, t in success.items():
+        d['quotedComp'][mailId]['Mail sent'] = t
+
+    log = getLog()
+    log['pending'][id] = d
+    makeLog(log)
+    print('Mail status updated')
 
 
 def deleteReq(id):
+    folder = pp.requestDir + id
+    if os.path.exists(folder):
+        shutil.rmtree(folder, ignore_errors=True)
+
     d = getLog()
     d['pending'].pop(id)
     makeLog(d)

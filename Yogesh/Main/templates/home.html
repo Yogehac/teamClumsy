@@ -28,7 +28,7 @@ Dashboard
                             {% for _,j in y['quotedComp'].items() %}
                             <div class="card my-3">
                                 <div class="card-header d-flex align-items-center">
-                                    <strong>1. {{j['cName']}}</strong>
+                                    <strong>{{j['cName']}}</strong>
                                     {% if j['quote'] %}
                                     <div class="checkmark ms-auto text-success fs-5 fw-bold"><b>L</b></div>
                                     {% else %}
@@ -42,7 +42,7 @@ Dashboard
                         <div class="col-md-6">
                             <form action="/dashboard/{{x}}/download">
                                 <a href="/dashboard/{{x}}" class="btn btn-info">open request</a> <br><br>
-                                <button id='down' class="btn btn-success">Final Excel</button>
+                                <button id='down' class="btn btn-success" disabled>Final Excel</button>
                                 <!-- <span class="fw-semibold">&nbsp; Click to download the final output Excel</span><br><br> -->
                             </form>
                         </div>
@@ -80,7 +80,7 @@ Dashboard
         if (!document.querySelector('.checkmark')) {
             d.disabled = true;
         } else { d.disabled = false; }
-        console.dir(d);
+        // console.dir(d);
     }
     // enableReport(); //for first instance
 
@@ -111,14 +111,16 @@ Dashboard
     };
 
     // Ajax Calling
+    let callsAjax = 1
+    let timer = setInterval(() => {
+        console.info('Surfed mail server cout = ', callsAjax);
+        callsAjax++;
+        enableReport();
+        for (let i of reqIds) {
+            call(i);
+        }
 
-    // let timer = setInterval(() => {
-    //     enableReport();
-    //     for (let i of reqIds) {
-    //         call(i);
-    //     }
-
-    // }, ajaxInterval * 1000);
+    }, ajaxInterval * 1000);
 
 </script>
 

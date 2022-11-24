@@ -35,20 +35,40 @@ Edit Request
                                 <strong>Company {{i}}</strong>
                                 {% if i != 1 %}
                                 <div class="btn-close ms-auto" onclick="remEl('{{i}}')"></div>
-
                                 {% endif %}
-
                             </div>
                             <div class="card-body">
                                 <div class="row g-3">
-                                    <div class="col">
+                                    <!-- <div class="col">
                                         <input type="text" class="form-control fw-semibold" name="c{{i}}n"
                                             placeholder="Company Name" value="{{ d[1][0]['quotedComp'][x]['cName'] }}">
+                                    </div> -->
+
+                                    <div class="col ">
+                                        <input id="c{{i}}n" oninput="handle_click('c{{i}}n')" list="c{{i}}ndl"
+                                            value="{{ d[1][0]['quotedComp'][x]['cName'] }}"
+                                            class="form-control fw-semibold" name="c{{i}}n" placeholder="Company Name"
+                                            autocomplete="off" required>
+                                        <datalist id="c{{i}}ndl">
+                                        </datalist>
                                     </div>
-                                    <div class="col">
+
+
+                                    <!-- <div class="col">
                                         <input type="email" class="form-control fw-semibold" name="c{{i}}e"
                                             placeholder="Email" value="{{x}}">
+                                    </div> -->
+
+                                    <div class="col">
+                                        <input id="c{{i}}e" type="email" class="form-control fw-semibold" name="c{{i}}e"
+                                            id="mail" placeholder="Email" autocomplete="off" value="{{x}}" required>
                                     </div>
+                                </div>
+                                <div class="form-floating my-3">
+                                    <textarea class="form-control" placeholder="Company Address" id="c{{i}}a"
+                                        name="c{{i}}a" style="height: 100px"
+                                        required>{{ d[1][0]['quotedComp'][x]['address'] }}</textarea>
+                                    <label for="c{{i}}a">Address</label>
                                 </div>
                             </div>
                         </div>
@@ -57,6 +77,25 @@ Edit Request
                     <!-- <input type="file"  name="file" accept=".xlsx,.xls,.csv"> -->
 
                     <div class="btn btn-primary" onclick="ad()">Add Company</div><br><br>
+
+                    <h5 class="card-title my-4">Mail Content</h5>
+                    <section class="my-4">
+                        <div class="row my-3">
+                            <label for="subject" class="col-sm-3 col-form-label fs-5">Subject</label>
+                            <div class="col-sm-9">
+                                <input type="text" id="subject" name="subject" class="form-control fw-semibold"
+                                    value="{{d[1][0]['Mail Content']['subject']}}">
+                            </div>
+                        </div>
+                        <div class="row my-3">
+                            <label for="mail-body" class="col-sm-3 col-form-label fs-5">Body</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" id="mail-body" name="mail-body"
+                                    rows="3">{{d[1][0]['Mail Content']['body']}}</textarea>
+                            </div>
+                        </div>
+                    </section>
+
                     <button class="btn btn-primary" type="submit">Update</button>
                     <a class="btn btn-danger" href="/dashboard/{{d[0]}}">Cancel</a>
                 </form>
@@ -107,20 +146,44 @@ Edit Request
         
     </script> -->
 <script>
+    let companies = JSON.parse('{{ data|safe }}');
+    console.log(companies);
+    let cname = Object.keys(companies)
+
     let i = parseInt('{{d[1][1]|length}}') + 1;
     const remEl = (id) => {
         document.getElementById(`${id}`).remove();
         i--;
     }
 
-    const addComp = () => {
-        const sec = document.querySelector('section');
-        const label = document.createElement('label');
-        label.id = `${i}`
-        label.innerHTML = `Company ${i} : <input name='c${i}n' placeholder='Company name'>
-                <input name='c${i}e' placeholder='Email'><span onclick='remEl(${i})'>Delete</span><br><br>`;
-        sec.appendChild(label);
-        i++;
+    const handle_click = (id) => {
+        const cName = document.getElementById(id);
+        if (companies[cName.value]) {
+            document.getElementById(`c${id[1]}e`).value = companies[cName.value]['email'];
+            document.getElementById(`c${id[1]}a`).innerText = companies[cName.value]['address'];
+        }
+        else {
+            document.getElementById(`c${id[1]}e`).value = '';
+            document.getElementById(`c${id[1]}a`).innerText = '';
+        }
+
+
+    }
+
+    const create_option = (id) => {
+        const dl_id = document.getElementById(id);
+        let temp = " ";
+        for (let y of cname) {
+            temp += `<option value = '${y}'>`;
+        }
+        console.log(id, temp);
+        dl_id.innerHTML = temp;
+    }
+
+    for (let ddd = 0; ddd < i - 1; ddd++) {
+        console.log(ddd);
+        create_option(`c${ddd + 1}ndl`);
+
     }
 
     const ad = () => {
@@ -131,6 +194,7 @@ Edit Request
         const div4 = document.createElement('div');
         const div5 = document.createElement('div');
         const div6 = document.createElement('div');
+        const divAdres = document.createElement('div');
 
 
         div1.className = 'card my-3';
@@ -138,27 +202,38 @@ Edit Request
 
         div2.className = 'card-header d-flex align-items-center';
         div2.innerHTML = `<strong>Company ${i}</strong>
-                            <div class="btn-close ms-auto" onclick='remEl(${i})'></div>`;
+                        <div class="btn-close ms-auto" onclick='remEl(${i})'></div>`;
 
         div3.className = 'card-body';
 
         div4.className = 'row g-3';
 
         div5.className = 'col';
-        div5.innerHTML = `<input type="text" class="form-control fw-semibold" name="c${i}n" placeholder="Company Name">`;
+        div5.innerHTML = `<input id="c${i}n" oninput = "handle_click('c${i}n')" list= "c${i}ndl" class="form-control fw-semibold" name="c${i}n" placeholder="Company Name" autocomplete = "off">
+        <datalist id="c${i}ndl"></datalist>`;
 
-        div6.className = 'col'
-        div6.innerHTML = `<input type="email" class="form-control fw-semibold" name="c${i}e" placeholder="Email">`;
+
+
+        div6.className = 'col';
+        div6.innerHTML = `<input id="c${i}e" type="email" class="form-control fw-semibold" name="c${i}e" placeholder="Email" autocomplete ="off">`;
+
+        divAdres.className = 'form-floating my-3';
+        divAdres.innerHTML = `<textarea class="form-control" placeholder="Company Address" id="c${i}a" name="c${i}a"
+                                        style="height: 100px" required></textarea>
+                                    <label for="c${i}a">Address</label>`;
+
 
         div4.appendChild(div5);
         div4.appendChild(div6);
 
         div3.appendChild(div4);
+        div3.appendChild(divAdres);
 
         div1.appendChild(div2);
         div1.appendChild(div3);
 
         sec.appendChild(div1);
+        create_option(`c${i}ndl`);
         i++;
     }
 
